@@ -47,17 +47,27 @@ def recherche_siecle(year):
             return siecle[i][1]
 
 
+def saisie_date(j, m, a):
+    while not (1 <= j <= 31):
+        j = int(input("Saisissez la date au format JJ >>> "))  # Jour au format JJ - type: int
+
+    while not (1 <= m <= 12):
+        m = int(input("Saisissez le mois au format MM >>> "))  # Mois au format MM - type: int
+
+    while not (1600 <= a < 2200):
+        a = int(input(
+            "Saisissez l'année au format AAAA (comprise entre 1600 et 2199 inclus) >>> "))  # Année au format AAAA - type int
+
+    return j, m, a
+
+
 # Saisie du jour, du mois et de l'année par l'utilisateur
-jour, mois, annee = 0, 0, 0
-while not(1 <= jour <= 31):
-    jour = int(input("Saisissez la date au format JJ >>> "))  # Jour au format JJ - type: int
+jour, mois, annee = saisie_date(0, 0, 0)
 
-while not(1 <= mois <= 12):
-    mois = int(input("Saisissez le mois au format MM >>> "))  # Mois au format MM - type: int
-
-while not(1600 <= annee < 2200):
-    annee = int(input("Saisissez l'année au format AAAA (comprise entre 1600 et 2199 inclus) >>> "))  # Année au format AAAA - type int
-
+# Vérification de la saisie du mois de Février
+while jour > 29 and mois == 2 and est_bissextile(annee) or jour > 28 and mois == 2 and not est_bissextile(annee):
+    print("Saisie du mois de Février incorrect !")
+    jour, mois, annee = saisie_date(0, 0, 0)
 
 # Liste de correspondance entre les mois de l'année et leur valeur associée pour le calcul du jour
 calendrier = [['Janvier', 0], ['Février', 3], ['Mars', 3], ['Avril', 6], ['Mai', 1], ['Juin', 4], ['Juillet', 6],
