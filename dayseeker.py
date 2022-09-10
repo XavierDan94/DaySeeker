@@ -84,7 +84,7 @@ Déclaration de la variable permettant d'obtenir le jour
 On récupère les 2 derniers chiffres de l'année puis on les caste en int
 """
 num_jour = int(str(annee)[-2:])
-# On ajoute 1/3 de l'année à num_jour
+# Opérations afin d'obtenir le numéro du jour
 num_jour += int(num_jour / 4) + jour + calendrier[mois - 1][1] + soustraction_bissextile(annee, mois) + recherche_siecle(annee)
 num_jour %= 7
 
